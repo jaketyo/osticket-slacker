@@ -31,7 +31,7 @@ class SlackerPlugin extends Plugin {
 //		$ticket_topic = $ticket->getTopic()->getName();
 //		$ticket_lastMessage = $ticket->getLastMessage();
 
-		// Slack json formatted payload
+		// Slack-formatted json payload
 		$data = "payload=" . json_encode(array(
 			"username"      =>  "{$username}",
 			"icon_url"      =>  "{$icon_url}",
@@ -72,7 +72,7 @@ class SlackerPlugin extends Plugin {
 			error_log('Slack Curl Error ' . $curl_error);
 		}
 		else if($result != 'ok') {
-			error_log('Slack Curl Error (Check your webhook URL): ' . $result);
+			error_log('Curl Error (Check your URL): ' . $result);
 		}
 	}
 }

@@ -3,7 +3,7 @@
 return array(
 	'id'			=> 'osticket:slacker',
 	'version'		=> '0.1',
-	'name'			=> 'Slack Plugin',
+	'name'			=> 'Slacker Plugin',
 	'author'		=> 'Jacob Tyo',
 	'description'	=> 'Sends a notification to a Skack channel when a ticket is created.',
 	'url'			=> 'https://github.com/jaketyo/osticket-slacker',

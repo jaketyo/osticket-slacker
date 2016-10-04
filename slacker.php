@@ -15,13 +15,13 @@ class SlackerPlugin extends Plugin {
 	function onTicketCreated($ticket) {
 		global $ost;
 
-		//Grab data set in Admin plugin
+		// Get config data
 		$slack_url  = $this->getConfig()->get('slack-webhook-url');
 		$channel    = $this->getConfig()->get('slack-channel');
 		$icon_url   = $this->getConfig()->get('slack-icon-url');
 		$username   = $this->getConfig()->get('slack-username');
 
-		//Grab useful data to post
+		// Get new ticket data
 		$ticket_id = $ticket->getId();
 		$ticket_url = $ost->getConfig()->getUrl() . 'scp/tickets.php?id=' . $ticket_id;
 		$ticket_number = $ticket->getNumber();
@@ -43,7 +43,7 @@ class SlackerPlugin extends Plugin {
 				"fields"         => array(
 					array(
 						"title" => "#{$ticket_number}",
-						"value" => "_Topic_: *{$ticket_topic}*\n_Subject_: *{$ticket_subject}*",
+//						"value" => "_Topic_: *{$ticket_topic}*\n_Subject_: *{$ticket_subject}*",
 						"short" => "true"
 					),
 					array(
@@ -56,23 +56,23 @@ class SlackerPlugin extends Plugin {
 			))
 		));
 
-		//Curl setting and execution
+		// Prepare and Curl the data
 		$ch = curl_init($slack_url);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch,CURLOPT_TIMEOUT,10);
-		$slack_result = curl_exec($ch);
+		curl_setopt($ch, CURLOPT_TIMEOUT,10);
+		$result = curl_exec($ch);
 		$curl_errno = curl_errno($ch);
 		$curl_error = curl_error($ch);
 		curl_close($ch);
 
-		//Catch Curl errors and post them in the log file
+		// Catch Curl errors and post them in the log file
 		if ($curl_errno > 0) {
 			error_log('Slack Curl Error ' . $curl_error);
 		}
-		else if($slack_result != 'ok') {
-			error_log('Slack Curl Error (Check your webhook URL): ' . $slack_result);
+		else if($result != 'ok') {
+			error_log('Slack Curl Error (Check your webhook URL): ' . $result);
 		}
 	}
 }

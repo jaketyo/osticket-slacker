@@ -5,7 +5,7 @@ require_once INCLUDE_DIR . 'class.plugin.php';
 class SlackerPluginConfig extends PluginConfig {
 	function getOptions() {
 		return array(
-			'slack' => new SectionBreakField(array(
+			'Slacker' => new SectionBreakField(array(
 				'label' => 'Slack notifier',
 			)),
 			'slack-channel' => new TextboxField(array(

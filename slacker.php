@@ -44,14 +44,14 @@ class SlackerPlugin extends Plugin {
 					array(
 						"title" => "#{$ticket_number}",
 //						"value" => "_Topic_: *{$ticket_topic}*\n_Subject_: *{$ticket_subject}*",
-						"short" => "true"
-					),
-					array(
-						"title" => "Contact Information",
-//						"value" => "_name_: `{$ticket_name}`\n_email:_ `{$ticket_email}`\n_ticket_url_: {$ticket_url}",
 						"value" => "_ticket_url_: `{$ticket_url}",
-						"short" => "true"
-					)
+						"short" => "false"
+					),
+//					array(
+//						"title" => "Contact Information",
+//						"value" => "_name_: `{$ticket_name}`\n_email:_ `{$ticket_email}`\n_ticket_url_: {$ticket_url}",
+//						"short" => "true"
+//					)
 				)
 			))
 		));

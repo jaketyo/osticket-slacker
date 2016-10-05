@@ -16,7 +16,7 @@ class SlackerPluginConfig extends PluginConfig {
 				'label' => 'Slack Username',
 				'default' => 'osTicket',
 				'configuration' => array('size'=>20, 'length'=>100),
-			),
+			)),
 			'slack-icon-url' => new TextboxField(array(
 				'label' => 'Slack icon-URL',
 				'configuration' => array('size'=>100, 'length'=>200),
